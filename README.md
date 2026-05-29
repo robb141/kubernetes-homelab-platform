@@ -25,7 +25,7 @@ A hands-on learning project: build a **production-style GitOps platform** step b
 │  │  │ (static UI)     │ /health │                         │   │  │
 │  │  │                 │ /api/*  │ GET /health             │   │  │
 │  │  └─────────────────┘         │ GET /api/info           │   │  │
-│  │                                └─────────────────────────┘   │  │
+│  │                              └─────────────────────────┘   │  │
 │  └────────────────────────────────────────────────────────────┘  │
 │                                                                  │
 │  Optional debug: curl http://localhost:8000/health (direct API)  │
@@ -83,6 +83,13 @@ Stop the stack:
 ```bash
 # Ctrl+C in the compose terminal, then:
 docker compose down
+```
+
+Check health status:
+
+```bash
+docker compose ps
+# backend should show "healthy" before frontend starts proxying traffic
 ```
 
 ---
