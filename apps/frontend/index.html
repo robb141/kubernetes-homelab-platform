@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homelab Platform</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
+    pre { background: #f4f4f5; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+    .ok { color: #166534; }
+    .err { color: #991b1b; }
+  </style>
+</head>
+<body>
+  <h1>Homelab Platform</h1>
+  <p>Frontend → Nginx → Backend API (Docker Compose network)</p>
+  <h2>/health</h2>
+  <pre id="health">Loading…</pre>
+  <h2>/api/info</h2>
+  <pre id="info">Loading…</pre>
+  <script>
+    async function load(path, elementId) {
+      const el = document.getElementById(elementId);
+      try {
+        const res = await fetch(path);
+        const body = await res.json();
+        el.textContent = JSON.stringify(body, null, 2);
+        el.className = res.ok ? "ok" : "err";
+      } catch (e) {
+        el.textContent = "Error: " + e.message;
+        el.className = "err";
+      }
+    }
+    load("/health", "health");
+    load("/api/info", "info");
+  </script>
+</body>
+</html>

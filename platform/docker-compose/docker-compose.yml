@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ../../apps/backend
+    image: homelab-api:0.1.0
+    environment:
+      ENVIRONMENT: compose
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ../../apps/frontend
+    image: homelab-frontend:0.1.0
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
