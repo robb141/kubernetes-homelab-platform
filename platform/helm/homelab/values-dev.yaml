@@ -1,0 +1,10 @@
+# Dev overrides — install with:
+#   helm upgrade --install homelab platform/helm/homelab \
+#     -f platform/helm/homelab/values.yaml \
+#     -f platform/helm/homelab/values-dev.yaml
+
+backend:
+  environment: dev
+
+ingress:
+  host: homelab-dev.local
