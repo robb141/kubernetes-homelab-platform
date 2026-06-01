@@ -1,0 +1,20 @@
+# Prod overrides — uses GHCR images (built by GitHub Actions).
+#   helm upgrade --install homelab platform/helm/homelab \
+#     -f platform/helm/homelab/values.yaml \
+#     -f platform/helm/homelab/values-prod.yaml
+
+backend:
+  environment: prod
+  image:
+    repository: ghcr.io/robb141/homelab-api
+    tag: "0.1.0"
+    pullPolicy: Always
+
+frontend:
+  image:
+    repository: ghcr.io/robb141/homelab-frontend
+    tag: "0.1.0"
+    pullPolicy: Always
+
+ingress:
+  host: homelab.example.com

@@ -110,12 +110,25 @@ uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 
 | Phase | Topics |
 |-------|--------|
-| **1 (now)** | FastAPI, Docker, Docker Compose, networking |
+| 1 | FastAPI, Docker, Docker Compose, K8s, Helm, CI |
 | 2 | Kubernetes basics, Deployments, Services, Ingress |
 | 3 | Helm charts, values per environment |
-| 4 | ArgoCD GitOps, sync policies, drift |
+| **4 (now)** | ArgoCD GitOps, sync policies, drift |
 | 5 | Terraform infra, dev/prod environments |
 | 6 | Prometheus, Grafana, TLS, hardening |
+
+---
+
+## CI (GitHub Actions)
+
+On every push/PR to `main`, GitHub Actions builds backend and frontend Docker images.
+
+- **Pull requests:** build only (validates Dockerfiles).
+- **Push to `main`:** build and push to `ghcr.io/robb141/homelab-api` and `homelab-frontend` (tags: git SHA + `latest`).
+
+Make packages public (first time): GitHub → Packages → package → Package settings → Change visibility.
+
+Workflow file: [.github/workflows/ci.yml](.github/workflows/ci.yml)
 
 ---
 
