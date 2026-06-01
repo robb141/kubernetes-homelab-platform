@@ -1,0 +1,21 @@
+namespace: homelab
+
+ingress:
+  enabled: true
+  className: nginx
+  host: homelab.local
+
+backend:
+  image:
+    repository: homelab-api
+    tag: "0.1.0"
+    pullPolicy: IfNotPresent
+  environment: kubernetes
+  servicePort: 8000
+
+frontend:
+  image:
+    repository: homelab-frontend
+    tag: "0.1.0"
+    pullPolicy: IfNotPresent
+  servicePort: 80
