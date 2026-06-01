@@ -37,7 +37,7 @@ jobs:
           images: ${{ env.REGISTRY }}/robb141/homelab-api
           tags: |
             type=sha,prefix=
-            type=raw,value=latest,enable={{ github.ref == 'refs/heads/main' }}
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push backend
         uses: docker/build-push-action@v6
@@ -54,7 +54,7 @@ jobs:
           images: ${{ env.REGISTRY }}/robb141/homelab-frontend
           tags: |
             type=sha,prefix=
-            type=raw,value=latest,enable={{ github.ref == 'refs/heads/main' }}
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push frontend
         uses: docker/build-push-action@v6
