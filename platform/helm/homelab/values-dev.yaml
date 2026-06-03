@@ -4,7 +4,7 @@
 #     -f platform/helm/homelab/values-dev.yaml
 
 backend:
-  environment: dev
+  environment: gitops-dev
 
 ingress:
   host: homelab-dev.local
