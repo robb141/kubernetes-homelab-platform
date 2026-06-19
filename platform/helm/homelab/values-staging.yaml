@@ -1,0 +1,7 @@
+# Staging overrides managed by the homelab-staging ArgoCD Application.
+
+backend:
+  environment: gitops-staging
+
+ingress:
+  host: homelab-staging.local
