@@ -24,6 +24,8 @@ spec:
           env:
             - name: ENVIRONMENT
               value: {{ .Values.backend.environment | quote }}
+          resources:
+            {{- toYaml .Values.backend.resources | nindent 12 }}
           readinessProbe:
             httpGet:
               path: /health

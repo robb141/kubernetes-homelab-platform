@@ -10,6 +10,13 @@ backend:
     pullPolicy: IfNotPresent
   environment: kubernetes
   servicePort: 8000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
 
 frontend:
   image:
@@ -17,3 +24,10 @@ frontend:
     tag: "0.1.0"
     pullPolicy: IfNotPresent
   servicePort: 80
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 250m
+      memory: 256Mi
