@@ -52,6 +52,11 @@ helm upgrade --install homelab platform/helm/homelab \
 Terraform creates both namespaces and their resource policies. Helm and ArgoCD
 deploy workloads into them; they do not own namespace lifecycle.
 
+The chart declares CPU and memory requests and limits for each container.
+Kubernetes uses requests for scheduling and enforces limits at runtime. The
+Terraform-managed `LimitRange` remains a fallback for workloads that omit these
+settings, while `ResourceQuota` enforces the total namespace budget.
+
 **Prod** (GHCR images — after CI has pushed them):
 
 ```bash
