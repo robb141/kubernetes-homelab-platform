@@ -51,7 +51,7 @@ ArgoCD Application: homelab-dev
   │
   │ renders Helm chart with values.yaml + values-dev.yaml
   ▼
-Kubernetes namespace: homelab
+Kubernetes namespace: platform-dev
   │
   ├── backend Deployment + Service
   ├── frontend Deployment + Service
@@ -171,10 +171,11 @@ homelab-dev   Synced        Progressing
 
 `Synced` means the live cluster matches the Helm chart rendered from Git. `Progressing` is expected locally while the Ingress controller service has a pending LoadBalancer address.
 
-The ArgoCD Application manifest is:
+The ArgoCD Application manifests are:
 
 ```text
 platform/argocd/homelab-dev-application.yaml
+platform/argocd/homelab-staging-application.yaml
 ```
 
 Apply or update it with:
