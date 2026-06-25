@@ -35,6 +35,35 @@ jobs:
       - name: Validate configuration
         run: terraform validate
 
+  helm-checks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+
+      - name: Lint dev chart
+        run: helm lint platform/helm/homelab -f platform/helm/homelab/values-dev.yaml
+
+      - name: Lint staging chart
+        run: helm lint platform/helm/homelab -f platform/helm/homelab/values-staging.yaml
+
+      - name: Render dev manifests
+        run: |
+          helm template homelab platform/helm/homelab \
+            --namespace platform-dev \
+            -f platform/helm/homelab/values-dev.yaml
+
+      - name: Render staging manifests
+        run: |
+          helm template homelab platform/helm/homelab \
+            --namespace platform-staging \
+            -f platform/helm/homelab/values-staging.yaml
+
   build-images:
     runs-on: ubuntu-latest
     permissions:
