@@ -44,6 +44,12 @@ kind: Service
 metadata:
   name: backend
   namespace: {{ .Release.Namespace }}
+  {{- if .Values.backend.metrics.enabled }}
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: {{ .Values.backend.metrics.path | quote }}
+    prometheus.io/port: {{ .Values.backend.servicePort | quote }}
+  {{- end }}
 spec:
   type: ClusterIP
   selector:
