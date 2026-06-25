@@ -7,6 +7,7 @@ It currently creates two environment namespaces:
 ```text
 platform-dev
 platform-staging
+monitoring
 ```
 
 It also applies:
