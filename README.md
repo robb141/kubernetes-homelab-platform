@@ -257,3 +257,19 @@ Expected API response:
 |--------|------|-------------|
 | GET | `/health` | Liveness-style check |
 | GET | `/api/info` | Service metadata (version, environment) |
+| GET | `/metrics` | Prometheus metrics endpoint exposed by the backend |
+
+## Observability
+
+The backend exposes Prometheus-format application metrics at `/metrics`,
+including request counts, request latency buckets, and app metadata.
+
+For a quick local check inside Kubernetes:
+
+```bash
+kubectl port-forward svc/backend -n platform-dev 8000:8000
+curl http://localhost:8000/metrics
+```
+
+The backend Service is annotated for Prometheus-style scraping. A later step
+will install Prometheus/Grafana and connect them to these metrics.

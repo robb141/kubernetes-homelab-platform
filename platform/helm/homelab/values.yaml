@@ -6,10 +6,13 @@ ingress:
 backend:
   image:
     repository: homelab-api
-    tag: "0.1.0"
+    tag: "0.1.1"
     pullPolicy: IfNotPresent
   environment: kubernetes
   servicePort: 8000
+  metrics:
+    enabled: true
+    path: /metrics
   resources:
     requests:
       cpu: 100m
