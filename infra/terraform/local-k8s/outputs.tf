@@ -27,3 +27,8 @@ output "staging_limit_range_name" {
   description = "LimitRange providing staging container defaults."
   value       = module.platform_staging.limit_range_name
 }
+
+output "monitoring_namespace_name" {
+  description = "Kubernetes namespace used for monitoring tools."
+  value       = kubernetes_namespace.monitoring.metadata[0].name
+}

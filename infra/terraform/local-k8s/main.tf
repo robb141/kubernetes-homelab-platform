@@ -16,6 +16,17 @@ module "platform_staging" {
   container_defaults = var.staging_container_defaults
 }
 
+resource "kubernetes_namespace" "monitoring" {
+  metadata {
+    name = var.monitoring_namespace_name
+
+    labels = {
+      "app.kubernetes.io/managed-by" = "terraform"
+      "homelab.dev/purpose"          = "observability"
+    }
+  }
+}
+
 moved {
   from = kubernetes_namespace.platform_dev
   to   = module.platform_namespace.kubernetes_namespace.this

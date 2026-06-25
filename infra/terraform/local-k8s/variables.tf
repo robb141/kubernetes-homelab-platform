@@ -99,3 +99,9 @@ variable "staging_container_defaults" {
     limit_memory   = "256Mi"
   }
 }
+
+variable "monitoring_namespace_name" {
+  description = "Name of the Kubernetes namespace used for monitoring tools."
+  type        = string
+  default     = "monitoring"
+}

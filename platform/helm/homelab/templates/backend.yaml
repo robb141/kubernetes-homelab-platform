@@ -44,6 +44,11 @@ kind: Service
 metadata:
   name: backend
   namespace: {{ .Release.Namespace }}
+  labels:
+    app: backend
+    app.kubernetes.io/name: homelab-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: homelab-platform
   {{- if .Values.backend.metrics.enabled }}
   annotations:
     prometheus.io/scrape: "true"

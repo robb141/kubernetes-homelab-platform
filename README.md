@@ -178,6 +178,7 @@ The ArgoCD Application manifests are:
 ```text
 platform/argocd/homelab-dev-application.yaml
 platform/argocd/homelab-staging-application.yaml
+platform/argocd/monitoring-application.yaml
 ```
 
 Apply or update it with:
@@ -272,4 +273,30 @@ curl http://localhost:8000/metrics
 ```
 
 The backend Service is annotated for Prometheus-style scraping. A later step
-will install Prometheus/Grafana and connect them to these metrics.
+installs Prometheus/Grafana with ArgoCD and connects them to these metrics.
+
+Prometheus and Grafana are installed into the Terraform-managed `monitoring`
+namespace with the `kube-prometheus-stack` Helm chart.
+
+Apply the monitoring application:
+
+```bash
+terraform apply
+kubectl apply -f platform/argocd/monitoring-application.yaml
+kubectl get application monitoring -n argocd
+```
+
+Open Grafana locally:
+
+```bash
+kubectl port-forward svc/monitoring-grafana -n monitoring 3000:80
+```
+
+Then open `http://localhost:3000`.
+
+Local credentials:
+
+```text
+Username: admin
+Password: admin
+```
