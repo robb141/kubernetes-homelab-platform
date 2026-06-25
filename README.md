@@ -145,6 +145,8 @@ uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 
 On every push/PR to `main`, GitHub Actions builds backend and frontend Docker images.
 
+- **Terraform:** checks formatting and validates the local Kubernetes Terraform configuration.
+- **Helm:** lints and renders dev/staging chart output.
 - **Pull requests:** build only (validates Dockerfiles).
 - **Push to `main`:** build and push to `ghcr.io/robb141/homelab-api` and `homelab-frontend` (tags: git SHA + `latest`).
 
