@@ -135,7 +135,7 @@ uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 | 1 | FastAPI, Docker, Docker Compose, K8s, Helm, CI |
 | 2 | Kubernetes basics, Deployments, Services, Ingress |
 | 3 | Helm charts, values per environment |
-| **4 (now)** | ArgoCD GitOps, sync policies, drift |
+| 4 | ArgoCD GitOps, sync policies, drift |
 | 5 | Terraform infra, dev/prod environments |
 | 6 | Prometheus, Grafana, TLS, hardening |
 
